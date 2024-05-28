@@ -1,0 +1,27 @@
+@if (flag) {
+  <button id="reboot" type="button" onClick="window.location.reload();">Ввести новое количество точек</button>
+  <br>
+  Введите точки
+  <div id="mode">
+    <form (ngSubmit)="onSubmit()" [formGroup]="pointsForm">
+        @for (num of numbers; track $index) {
+        x{{num}} <input type="number" [formControlName]="'x' + num">
+        y{{num}} <input type="number"[formControlName]="'y' + num">
+        <br>
+      }
+      <button type="submit" [disabled]="!pointsForm.valid">Выбрать</button>
+    </form>
+    <br>
+    <hr>
+    <div id="myDiv" style="width:100%; height:600px;"></div>
+  </div>
+}
+@else {
+  Веберите количество точек
+  <br>
+  <form (ngSubmit)="onSubmitCount()" [formGroup]="countForm">
+    Введите число от 3 до 12 <input type="number" formControlName="numberInput">
+    <br>
+    <button type="submit" [disabled]="!countForm.valid">Выбрать</button>
+  </form>
+}
